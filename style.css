@@ -1,0 +1,154 @@
+*{ margin:0; padding:0; box-sizing:border-box; }
+html, body{ height:100%; }
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:#fff;
+  overflow: hidden; /* app feel */
+}
+
+a{ text-decoration:none; color:inherit; }
+
+/* Background */
+.bg{
+  position:fixed; inset:0;
+  background: url("/images/Charles.png") center/cover no-repeat;
+  transform: scale(1.03);
+}
+.overlay{
+  position:fixed; inset:0;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(0,180,255,.35), transparent 45%),
+    radial-gradient(circle at 75% 30%, rgba(120,80,255,.25), transparent 45%),
+    linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.7));
+  backdrop-filter: blur(1px);
+}
+
+/* App shell */
+.app{
+  position:relative;
+  height:100vh;
+  padding:
+    calc(env(safe-area-inset-top) + 18px)
+    calc(env(safe-area-inset-right) + 14px)
+    calc(env(safe-area-inset-bottom) + 18px)
+    calc(env(safe-area-inset-left) + 14px);
+
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* Header */
+.app-header{
+  text-align:center;
+  padding: 8px 10px 0;
+}
+.avatar{
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,.55);
+  box-shadow: 0 16px 40px rgba(0,0,0,.35);
+  margin: 0 auto 10px;
+  display:block;
+}
+.app-header h1{
+  font-size: 30px;
+  line-height: 1.1;
+}
+.app-header p{
+  margin-top: 10px;
+  color: rgba(255,255,255,.9);
+  font-size: 14px;
+}
+.fun{
+  margin-top: 12px !important;
+  font-weight: 600;
+}
+
+/* Scrollable content (like an app screen) */
+.app-content{
+  flex:1;
+  overflow:auto;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Links list */
+.links{ display:grid; gap:14px; }
+
+.link-btn, .video-link{
+  width:100%;
+  height: 64px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.25);
+}
+
+.link-btn{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding: 0 18px;
+  font-weight: 650;
+  letter-spacing:.2px;
+  user-select:none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .12s ease, background .12s ease;
+}
+
+.link-btn i{ font-size: 22px; }
+.link-btn:active{
+  transform: scale(0.98); /* app tap */
+  background: rgba(255,255,255,.14);
+}
+
+.link-btn.disabled{
+  opacity: .55;
+  pointer-events:none;
+}
+
+/* Video pill */
+.video-link{ overflow:hidden; }
+.video-link iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+/* Bottom nav */
+.bottom-nav{
+  height: 62px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.25);
+
+  display:flex;
+  align-items:center;
+  justify-content: space-around;
+}
+
+.bottom-nav a{
+  width: 44px; height: 44px;
+  display:grid; place-items:center;
+  border-radius: 14px;
+  -webkit-tap-highlight-color: transparent;
+}
+.bottom-nav a:active{ transform: scale(0.95); }
+.bottom-nav i{ font-size: 22px; }
+
+/* Desktop: keep it phone-like in the center */
+@media (min-width: 900px){
+  body{ display:grid; place-items:center; overflow:auto; }
+  .app{
+    width: 420px;
+    height: 860px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 30px 90px rgba(0,0,0,.5);
+  }
+}
